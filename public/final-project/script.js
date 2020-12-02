@@ -1,13 +1,31 @@
 const endpoint = 'https://raw.githubusercontent.com/umdio/umdio-data/master/courses/data/202008.json';
 
-const gened = [];
-fetch(endpoint)
-  .then((blob) => blob.json())
-  .then((data) => gened.push(...data));
 
-function findMatches(wordToMatch, gened) {
-  return gened.filter((course) => {
+function findMatches(wordToMatch, allcourses) {
+  // trying to match the GenEd req to 
+  
+  return allcourses.filter((course) => {
     const regex = new RegExp(wordToMatch, 'gi');
-    return course.gened.match(regex);
+    return course.name.match(regex);
   });
 }
+
+async function mainThread(){
+  const data = await fetch(endpoint);
+  const blob = await data.json();
+  console.log('data from endpoint', blob);
+  const textinput = document.querySelector('.search');
+  const searchform = document.querySelector('.search-form');
+  searchform.addEventListener('submit', (event)=>{
+    event.preventDefault();
+
+  })
+  textinput.addEventListener('change', (event)=>{
+    event.preventDefault();
+    const val = event.target.value;
+    console.log(val);
+    const matches = findMatches(val, blob);
+    console.table(matches);
+  })
+}
+window.onload = mainThread;
