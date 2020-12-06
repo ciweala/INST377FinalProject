@@ -47,7 +47,7 @@ html {
   input.search {
     margin: 0;
     text-align: center;
-    outline: 0;
+    outline: 0 ;
     border: 10px solid #a066e3;
     width: 80%;
     left: -10%;
