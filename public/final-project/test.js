@@ -36,29 +36,33 @@ async function mainThread(){
       const openseats = value.open_seats;
       const geneds = value.gen_ed;
       return `
-        <div class = "list-item">
-        <li>
-          <span class="courseid">Course ID: ${courseid}</span>
-          <br>
-          <span class="name is-primary"><strong>${name}</strong></span>
-          <br>
-          <span class ="gened">GenEd(s): ${geneds}</span>
-          <br>
-          <span class="semester">Semester: ${semester}</span>
-          <br>
-          <span class="desc">${description}</span>
-          <br>
-          <span class="totalseats">Total Seats: ${totalseats}</span>
-          <br>
-          <span class="openseats">Open Seats: ${openseats}</span>
-        </li>
+        <div class = "box is-ceneterd">
+          <div class = "content is-centered">
+           <ul class= "is-centered">
+              Course ID: ${courseid}
+              <br>
+              <strong>${name}</strong>
+              <br>
+              GenEd(s): ${geneds}
+              <br>
+              Semester: ${semester}
+              <br>
+              ${description}
+              <br>
+              Total Seats: ${totalseats}
+              <br>
+              Open Seats: ${openseats}
+              <br>
+              <br>
+            </ul>
+          </div>
         </div>
       `;
     }).join('');
-    content.innerHTML = html;
+    box.innerHTML = html;
   })
 }
 // const searchInput = document.querySelector('.search');
-const content = document.querySelector('.content')
+const box = document.querySelector('.box')
 
 window.onload = mainThread;
