@@ -24,15 +24,19 @@ app.use((req, res, next) => {
 app.route('/api')
   .get(async (req, res) => {
     console.log('GET request detected');
-    console.log('fetch request data', json);
+    const data = await fetch('https://raw.githubusercontent.com/umdio/umdio-data/master/courses/data/202008.json');
+    const json = await data.json();
+    res.render('index', {});
   })
   .post(async (req, res) => {
     console.log('POST request detected');
     const data = await fetch('https://raw.githubusercontent.com/umdio/umdio-data/master/courses/data/202008.json');
     const json = await data.json();
     res.json(json);
-  })
-  ; 
+    // console.log('fetch request data', data);
+    // console.log('Form data in res.body', req.body);
+    // res.json(countries);
+  }); 
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`);
