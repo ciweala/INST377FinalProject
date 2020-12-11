@@ -1,33 +1,4 @@
-
-
-
-function findMatches(wordToMatch, allcourses) {
-  // trying to match the GenEd req 
-  return allcourses.filter(course => {
-    const regex = new RegExp(wordToMatch, 'gi');
-<<<<<<< Updated upstream
-    return course.dept_id.match(regex) || course.name.match(regex) || course.department.match(regex) || course.course_id.match(regex)
-=======
-    return course.name.match(regex) || course.department.match(regex) || course.dept_id.match(regex) || course.course_id.match(regex) || allcourses.gen_ed.match(regex)
->>>>>>> Stashed changes
-  });
-}
-/*
-async function mainThread(){
-  const data = await fetch(endpoint);
-  const blob = await data.json();
-  console.log('data from endpoint', blob);
-  const textinput = document.querySelector('.input');
-  const searchform = document.querySelector('.search');
-  searchform.addEventListener('submit', (event)=>{
-    event.preventDefault();
-
-  })
-*/
-  function displayMatches(data){
-    const matches = findMatches(this.value, data);
-    const html = matches.map(value => {
-      const courseid = value.course_id; 
+const courseid = value.course_id; 
       const name = value.name;
       const semester = value.semester;
       const description = value.description;

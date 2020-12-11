@@ -5,10 +5,9 @@ function findMatches(wordToMatch, allcourses) {
   // trying to match the GenEd req 
   return allcourses.filter(course => {
     const regex = new RegExp(wordToMatch, 'gi');
-    return course.name.match(regex) || course.department.match(regex) || course.dept_id.match(regex) || course.course_id.match(regex) || course.gen_ed.match(regex)
+    return course.name.match(regex) || course.department.match(regex) || course.dept_id.match(regex) || course.course_id.match(regex)
   });
 }
-
 async function mainThread(){
   const data = await fetch(endpoint);
   const blob = await data.json();
@@ -73,4 +72,4 @@ async function mainThread(){
 // const searchInput = document.querySelector('.search');
 const box = document.querySelector('.box')
 
-window.onload = mainThread;
+window.onload = mainThread();

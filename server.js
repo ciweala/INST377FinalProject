@@ -25,6 +25,7 @@ app.route('/api')
   .get(async (req, res) => {
     console.log('GET request detected');
     console.log('fetch request data', json);
+    res.render('index.html', {});
   })
   .post(async (req, res) => {
     console.log('POST request detected');
