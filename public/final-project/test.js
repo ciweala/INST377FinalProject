@@ -2,11 +2,10 @@ const endpoint = 'https://raw.githubusercontent.com/umdio/umdio-data/master/cour
 
 
 function findMatches(wordToMatch, allcourses) {
-  // trying to match the GenEd req to 
-  
+  // trying to match the GenEd req 
   return allcourses.filter(course => {
     const regex = new RegExp(wordToMatch, 'gi');
-    return course.name.match(regex) || course.department.match(regex) || course.dept_id.match(regex) || course.course_id.match(regex);
+    return course.name.match(regex) || course.department.match(regex) || course.dept_id.match(regex) || course.course_id.match(regex)
   });
 }
 

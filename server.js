@@ -25,7 +25,6 @@ app.route('/api')
   .get(async (req, res) => {
     console.log('GET request detected');
     console.log('fetch request data', json);
-    // res.send(`Lab 5 for ${process.env.NAME}`);
   })
   .post(async (req, res) => {
     console.log('POST request detected');
@@ -35,7 +34,8 @@ app.route('/api')
     // console.log('fetch request data', data);
     // console.log('Form data in res.body', req.body);
     // res.json(countries);
-  }); 
+  })
+  ; 
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`);
