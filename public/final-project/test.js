@@ -32,11 +32,22 @@ async function mainThread(){
       const name = value.name;
       const semester = value.semester;
       const description = value.description;
-      const totalseats = value.seats;
-      const openseats = value.open_seats;
       const geneds = value.gen_ed;
+      const section = value.sections.map(value2 => {
+        const sectionid = value2.section_id
+        const openseats = value2.open_seats;
+        const totalseats = value2.seats;
+        const prof = value2.instructors;
+        return `
+          ${sectionid}
+          <strong> Open Seats: ${openseats} </strong>
+          Total Seats: ${totalseats}    
+          Professor(s): ${prof}
+          <br>   
+          `
+      }).join('');
       return `
-        <div class = "box is-ceneterd">
+        <div class = "hero">
           <div class = "content is-centered">
            <ul class= "is-centered">
               Course ID: ${courseid}
@@ -49,10 +60,8 @@ async function mainThread(){
               <br>
               ${description}
               <br>
-              Total Seats: ${totalseats}
-              <br>
-              Open Seats: ${openseats}
-              <br>
+              Sections: ${section}
+              </ul>
               <br>
             </ul>
           </div>
