@@ -31,9 +31,6 @@ app.route('/api')
     const data = await fetch('https://raw.githubusercontent.com/umdio/umdio-data/master/courses/data/202008.json');
     const json = await data.json();
     res.json(json);
-    // console.log('fetch request data', data);
-    // console.log('Form data in res.body', req.body);
-    // res.json(countries);
   })
   ; 
 
