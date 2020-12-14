@@ -1,4 +1,32 @@
-const courseid = value.course_id; 
+const endpoint = 'https://raw.githubusercontent.com/umdio/umdio-data/master/courses/data/202008.json';
+
+
+function findMatches(wordToMatch, allcourses) {
+  // trying to match the GenEd req 
+  return allcourses.filter(course => {
+    const regex = new RegExp(wordToMatch, 'gi');
+    return course.name.match(regex) || course.department.match(regex) || course.dept_id.match(regex) || course.course_id.match(regex)
+  });
+}
+async function mainThread(){
+  const data = await fetch(endpoint);
+  const blob = await data.json();
+  console.log('data from endpoint', blob);
+  const textinput = document.querySelector('.input');
+  const searchform = document.querySelector('.search');
+  searchform.addEventListener('submit', (event)=>{
+    event.preventDefault();
+
+  })
+  textinput.addEventListener('change', (event)=>{
+    event.preventDefault();
+    const val = event.target.value;
+    console.log(val);
+    const matches = findMatches(val, blob);
+    console.table(matches);
+    
+    const html = matches.map(value => {
+      const courseid = value.course_id; 
       const name = value.name;
       const semester = value.semester;
       const description = value.description;
@@ -39,41 +67,9 @@ const courseid = value.course_id;
       `;
     }).join('');
     box.innerHTML = html;
-  }
-
- /*
-  textinput.addEventListener('change', (event)=>{
-    event.preventDefault();
-    const val = event.target.value;
-    console.log(val);
-    const matches = findMatches(val, blob);
-    console.table(matches);
-    
-    
   })
 }
-
-*/
 // const searchInput = document.querySelector('.search');
 const box = document.querySelector('.box')
-const textinput = document.querySelector('.input');
-const searchform = document.querySelector('.search');
 
-//window.onload = mainThread;
-
-searchform.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const dat = $(e.target).serializeArray();
-  fetch('/api', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(dat)
-  })
-  .then((fromServer) => fromServer.json())
-  .then((jsonFromServer) => displayMatches(jsonFromServer))
-  .catch((err) => {
-    console.log(err);
-  })
-})
+window.onload = mainThread();
