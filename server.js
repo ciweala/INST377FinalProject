@@ -4,6 +4,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import fetch from 'node-fetch';
+import { pullAt } from 'cypress/types/lodash';
 // import countries from './public/lab_6/countries.js'; 
 
 dotenv.config();
@@ -21,6 +22,15 @@ app.use((req, res, next) => {
   next();
 });
 
+app.param('user_id', function (req, res, next, id) {
+  req.user = {
+    id: id,
+    name: 'student'
+  }
+  next()
+  })
+
+
 app.route('/api')
   .get(async (req, res) => {
     console.log('GET request detected');
@@ -33,7 +43,11 @@ app.route('/api')
     const json = await data.json();
     res.json(json);
   })
-  ; 
+  .put(async (req, res) => {
+    console.log('PUT request detected');
+    req.user.name = req.params.name
+    res.json(req.user)
+  }); 
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`);
