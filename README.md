@@ -2,8 +2,13 @@
 
 This project is meant to make finding a suitable class easier at University of Maryland, College Park. We offer you the ability to search for classes based on keywords, rather than course IDs. You can search for topics that you may be interested in, such as "American history" or "Weather." We place emphasis on the number of Open Seats available in each Section, so you know if it is able to fill up soon. 
 
+Our target browser is Google Chrome on Laptops and Computers. Mobile devices are also supported.
+
 ## Heroku Link
 [Click Me to Open!](https://guarded-earth-10598.herokuapp.com/final-project/)
 
 ## User Manual
 [Click Me for Help!](https://guarded-earth-10598.herokuapp.com/final-project/documentation.html)
+
+## Developer Manual
+[Click Me for Development!](#developer-manual)
