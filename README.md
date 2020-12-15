@@ -7,7 +7,7 @@ Our target browser is Google Chrome on Laptops and Computers. Mobile devices are
 ## Heroku Link
 [Click Me to Open!](https://guarded-earth-10598.herokuapp.com/final-project/)
 
-
+## Manuals
 [Click Me for User Manual!](#user-manual)
 
 
