@@ -1,38 +1,37 @@
+/* eslint-disable max-len */
 const endpoint = 'https://raw.githubusercontent.com/umdio/umdio-data/master/courses/data/202008.json';
 
-
 function findMatches(wordToMatch, allcourses) {
-  // trying to match the GenEd req 
-  return allcourses.filter(course => {
+  // trying to match the GenEd req
+  return allcourses.filter((course) => {
     const regex = new RegExp(wordToMatch, 'gi');
-    return course.name.match(regex) || course.department.match(regex) || course.dept_id.match(regex) || course.course_id.match(regex)
+    return course.name.match(regex) || course.department.match(regex) || course.dept_id.match(regex) || course.course_id.match(regex);
   });
 }
-async function mainThread(){
+async function mainThread() {
   const data = await fetch(endpoint);
   const blob = await data.json();
   console.log('data from endpoint', blob);
   const textinput = document.querySelector('.input');
   const searchform = document.querySelector('.search');
-  searchform.addEventListener('submit', (event)=>{
+  searchform.addEventListener('submit', (event) => {
     event.preventDefault();
-
-  })
-  textinput.addEventListener('change', (event)=>{
+  });
+  textinput.addEventListener('change', (event) => {
     event.preventDefault();
     const val = event.target.value;
     console.log(val);
     const matches = findMatches(val, blob);
     console.table(matches);
-    
-    const html = matches.map(value => {
-      const courseid = value.course_id; 
-      const name = value.name;
-      const semester = value.semester;
-      const description = value.description;
+
+    const html = matches.map((value) => {
+      const courseid = value.course_id;
+      const {name} = value;
+      const {semester} = value;
+      const {description} = value;
       const geneds = value.gen_ed;
-      const section = value.sections.map(value2 => {
-        const sectionid = value2.section_id
+      const section = value.sections.map((value2) => {
+        const sectionid = value2.section_id;
         const openseats = value2.open_seats;
         const totalseats = value2.seats;
         const prof = value2.instructors;
@@ -42,7 +41,7 @@ async function mainThread(){
           Total Seats: ${totalseats}    
           Professor(s): ${prof}
           <br>   
-          `
+          `;
       }).join('');
       return `
         <div class = "hero">
@@ -66,10 +65,10 @@ async function mainThread(){
         </div>
       `;
     }).join('');
+    const box = document.querySelector('.box');
     box.innerHTML = html;
-  })
+  });
 }
 // const searchInput = document.querySelector('.search');
-const box = document.querySelector('.box')
 
 window.onload = mainThread();
